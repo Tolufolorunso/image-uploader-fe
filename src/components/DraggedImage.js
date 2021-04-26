@@ -2,12 +2,24 @@ import React from 'react'
 import logo from '../assets/images/image.svg'
 
 const DraggedImage = ({ uploadImage }) => {
-  function handleDrag(e) {
+  const [borderColor, setBorderColor] = React.useState('#2f80ed')
+  function handleOnDragOver(e) {
     e.preventDefault()
+    setBorderColor('green')
   }
 
-  function handleOnDrag(e) {
+  function handleDragEnter(e) {
     e.preventDefault()
+    setBorderColor('green')
+  }
+  function handleDragLeave(e) {
+    e.preventDefault()
+    setBorderColor('#2f80ed')
+  }
+
+  function handleOnDrop(e) {
+    e.preventDefault()
+    setBorderColor('#2f80ed')
     const imageFile = e.dataTransfer.files
     uploadImage(imageFile['0'])
   }
@@ -15,13 +27,14 @@ const DraggedImage = ({ uploadImage }) => {
   return (
     <div
       className='dropZone'
-      onDrop={handleOnDrag}
-      onDragOver={handleDrag}
-      onDragEnter={handleDrag}
-      onDragLeave={handleDrag}
+      style={{ border: `2px dashed ${borderColor}` }}
+      onDrop={handleOnDrop}
+      onDragOver={handleOnDragOver}
+      onDragEnter={handleDragEnter}
+      onDragLeave={handleDragLeave}
     >
       <div className='image'>
-        <img src={logo} alt='' width='150' />
+        <img src={logo} alt='logo' width='150' />
       </div>
       <p>Drag &amp; Drop your image here</p>
     </div>

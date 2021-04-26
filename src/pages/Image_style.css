@@ -41,7 +41,7 @@
 }
 
 .dropZone {
-    border: 1px dashed #2f80ed;
+    /* border: 1px dashed #2f80ed; */
     border-radius: 10px;
 }
 
