@@ -22,10 +22,9 @@ function App(props) {
     } else if (e === 'success') {
       setPage(e)
     } else if (e === 'fail') {
-      console.log(errorMessage)
       setPage('')
       setAlert(true)
-      setErrorMessage(errorMessage.errorMsg)
+      setErrorMessage(errorMessage)
       setTimeout(() => {
         setAlert(false)
         setErrorMessage('')
@@ -44,11 +43,16 @@ function App(props) {
           'content-type': 'multipart/form-data',
         },
       })
-      console.log(res)
       setImageUrl(res.data.imageUrl)
       setDisplay('success')
     } catch (error) {
-      setDisplay('fail', error.response.data)
+      let errorMsg
+      if (typeof error.response === 'undefined') {
+        errorMsg = 'Network Error: Check your network'
+      } else {
+        errorMsg = error.response.data.errorMsg
+      }
+      setDisplay('fail', errorMsg)
     }
   }
 

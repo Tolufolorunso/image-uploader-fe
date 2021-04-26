@@ -161,3 +161,8 @@
 .copy {
     font-size: 0.8rem;
 }
+
+.check-circle {
+    margin-bottom: 20px;
+    color: green;
+}

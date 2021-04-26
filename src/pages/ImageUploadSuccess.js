@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 const ImageUploadSuccess = ({ imageUrl }) => {
   const [copy, setCopy] = useState('')
@@ -13,6 +15,7 @@ const ImageUploadSuccess = ({ imageUrl }) => {
   }
   return (
     <div className='card'>
+      <FontAwesomeIcon className='check-circle' icon={faCheckCircle} />
       <h2>Uploaded Successfully!</h2>
       <div className='image-container'>
         <img src={imageUrl} alt='' />
